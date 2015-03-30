@@ -1,7 +1,7 @@
 #!/usr/bin/env runhaskell
 
--- | Complementing a Strand of DNA
--- Usage: REVC <dataset.txt>
+-- | Computing GC Content
+-- Usage: GC <dataset.txt>
 
 import System.Environment(getArgs)
 import qualified Data.ByteString.Char8 as C
