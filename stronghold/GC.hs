@@ -8,19 +8,6 @@ import qualified Data.ByteString.Char8 as C
 import Data.Ord(comparing)
 import Data.List(sortBy)
 
--- redundant
-
-parseFasta :: C.ByteString -> [(C.ByteString, C.ByteString)]
-parseFasta = removeKet' . pairs . C.lines
-
-removeKet' :: [(C.ByteString, t)] -> [(C.ByteString, t)]
-removeKet' = map (\(name, seq) -> (removeKet . head . C.words $ name, seq))
-
-removeKet :: C.ByteString -> C.ByteString
-removeKet  = C.dropWhile (=='>')
-
---
-
 parseFastaMultiline :: C.ByteString -> [(C.ByteString, C.ByteString)]
 parseFastaMultiline f = zip (map (C.takeWhile (/='\n')) xs) (map (C.filter (/='\n') . C.dropWhile (/='\n')) xs)
 	where xs = filter (\x -> C.length x > 0) . C.split '>' $ f
